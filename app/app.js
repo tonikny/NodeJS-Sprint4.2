@@ -3,7 +3,7 @@ require('dotenv').config();
 const express = require('express');
 const app = express();
 
-const rutes = require('./routes/router');
+const rutes = require('./routes/player.router');
 app.use('/', rutes.router);
 
 
