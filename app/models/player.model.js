@@ -1,44 +1,74 @@
 
 const { Sequelize, Model, DataTypes } = require('sequelize');
-const sequelize = new Sequelize(process.env.MYSQL_CONN,{logging: false});
+const sequelize = new Sequelize(
+  process.env.MYSQL_CONN,
+  //{ logging: false }
+);
 
-class Player extends Model {
+class Player {
 
   constructor() {
-    super();
+    this.dbo = PlayerSequelize.build({});
+    //super();
   }
 
-  add(username) {
-    // TODO: 
-
+  async add(username) {
+    this.dbo.username = username;
+    await this.dbo.save();
   }
 
   async get(id) {
-    const player = await Player.findByPk(id);
-    if (player === null) {
-      console.log('Not found!');
-    } else {
-      console.log(player instanceof Player); // true
-      console.log(player.toJSON());
+    const player = await this.dbo.findByPk(id);
+    if (player !== null) {
+      //console.log(player.toJSON());
       return player.toJSON();
     }
   }
 
-  static async getAll() {
-    return await Player.findAll();
+  async getAll(where) {
+    let opcions = { raw: true };
+    if (where) {
+      opcions = { raw: true, where };
+    }
+    const playerList = await PlayerSequelize.findAll(opcions);
+    //console.log(playerList);
+    return playerList;
+  }
+
+  async getNum(where) {
+    await PlayerSequelize.count({ where });
   }
 
 }
-
+/* 
 Player.init({
   //_id: { type: DataTypes.INTEGER.UNSIGNED, autoIncrement: true },
   username: DataTypes.STRING,
   birthday: DataTypes.DATE
 }, { sequelize, modelName: 'player' });
-
+ */
+const PlayerSequelize = sequelize.define('Player', {
+  id: {
+    type: DataTypes.INTEGER,
+    autoIncrement: true,
+    primaryKey: true
+  },
+  username: {
+    type: DataTypes.STRING,
+    allowNull: false
+  }
+}, {
+  createdAt: true,
+  updatedAt: false,
+  tableName: 'player'
+});
 
 (async () => {
-  await sequelize.sync();
+  await sequelize.sync({ force: false });
+  /* await PlayerSequelize.bulkCreate([
+    { username: 'toni' },
+    { username: 'prova' }
+  ]); */
 })();
 
 /* (async () => {

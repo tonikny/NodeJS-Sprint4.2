@@ -7,18 +7,17 @@ class PlayerService {
     this.player = new playerModel();
   }
 
-  addPlayer(username) {
+  async addPlayer(username) {
     if (username === '') {
       username = 'ANONIM';
+    } else {
+      const num = await this.player.getNum({ username });
+      console.log(num);
+      if ( num > 0) {
+        return;
+      }
     }
-
-    try {
-      this.player.add(username);
-      // TODO: preparar objecte per a retornar
-      return this.player;
-    } catch (e) {
-
-    }
+    await this.player.add(username);
   }
 
   async getPlayer(id) {
@@ -26,7 +25,7 @@ class PlayerService {
   }
 
   async getAllPlayers() {
-    return await playerModel.getAll();
+    return await this.player.getAll();
   }
 
 }

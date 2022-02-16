@@ -29,7 +29,8 @@ Al joc de daus s’hi juga amb dos daus de sis cares:
  */
 
 const PlayerController = require('../controllers/player.controller');
-//router.post('/players', PlayerController.addPlayer());
+
+router.post('/players', express.json(), PlayerController.addPlayer);
 
 router.put('/players');
 
@@ -48,26 +49,5 @@ router.get('/players/ranking/loser');
 router.get('/players/ranking/winner');
 
 
-
-/* 
-const rutaUser = require('../controllers/user');
-router.get('/user', rutaUser.user);
-
-const { uploadSingle, uploadImatge } = require('../controllers/upload');
-router.post('/upload', uploadSingle, uploadImatge);
-
-const cors = require('cors');
-const auth = require('../middlewares/auth');
-const noCache = require('../middlewares/noCache');
-const time = require('../controllers/time');
-router.post(
-  '/time',          // ruta
-  auth,             // app/middlewares/auth.js
-  cors(),           // cors (express)
-  noCache,          // app/middlewares/noCache.js
-  express.json(),   // per acceptar paràmetre json
-  time              // retorna data/hora si hi ha parámetre usuari
-);
- */
 
 module.exports = { router }
