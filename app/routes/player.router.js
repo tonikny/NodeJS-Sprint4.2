@@ -17,11 +17,11 @@ Al joc de daus s’hi juga amb dos daus de sis cares:
     El software ha de permetre llistar tots els jugadors que hi ha al sistema, el percentatge d’èxit de cada jugador i el percentatge d’èxit mig de tots els jugadors en el sistema.
     El software ha de respectar els principals patrons de disseny.
     Has de tenir en compte els següents detalls de construcció:
-        POST /players: crea un jugador
+      **POST /players: crea un jugador
         PUT /players: modifica el nom del jugador
         POST /players/{id}/games: un jugador específic realitza una tirada
         DELETE /players/{id}/games: elimina les tirades del jugador
-        GET /players: retorna el llistat de tots els jugadors del sistema amb el seu percentatge mig d’èxits
+      **GET /players: retorna el llistat de tots els jugadors del sistema amb el seu percentatge mig d’èxits
         GET /players/{id}/games: retorna el llistat de jugades per un jugador.
         GET /players/ranking: retorna el percentatge mig d’èxits del conjunt de tots els jugadors
         GET /players/ranking/loser: retorna el jugador amb pitjor percentatge d’èxit
@@ -30,6 +30,7 @@ Al joc de daus s’hi juga amb dos daus de sis cares:
 
 const PlayerController = require('../controllers/player.controller');
 
+// crea un jugador
 router.post('/players', express.json(), PlayerController.addPlayer);
 
 router.put('/players');

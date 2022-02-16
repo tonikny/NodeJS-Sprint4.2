@@ -11,13 +11,14 @@ class PlayerService {
     if (username === '') {
       username = 'ANONIM';
     } else {
-      const num = await this.player.getNum({ username });
-      console.log(num);
+      // si el nom ja existeix no s'inserta a la bd
+      const num = await this.player.getNum({ username: username });
       if ( num > 0) {
-        return;
+        return false;
       }
     }
     await this.player.add(username);
+    return true;
   }
 
   async getPlayer(id) {

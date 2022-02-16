@@ -2,14 +2,13 @@
 const { Sequelize, Model, DataTypes } = require('sequelize');
 const sequelize = new Sequelize(
   process.env.MYSQL_CONN,
-  //{ logging: false }
+  // { logging: false }
 );
 
 class Player {
 
   constructor() {
     this.dbo = PlayerSequelize.build({});
-    //super();
   }
 
   async add(username) {
@@ -36,17 +35,11 @@ class Player {
   }
 
   async getNum(where) {
-    await PlayerSequelize.count({ where });
+    return await PlayerSequelize.count({ where });
   }
 
 }
-/* 
-Player.init({
-  //_id: { type: DataTypes.INTEGER.UNSIGNED, autoIncrement: true },
-  username: DataTypes.STRING,
-  birthday: DataTypes.DATE
-}, { sequelize, modelName: 'player' });
- */
+
 const PlayerSequelize = sequelize.define('Player', {
   id: {
     type: DataTypes.INTEGER,
@@ -64,21 +57,11 @@ const PlayerSequelize = sequelize.define('Player', {
 });
 
 (async () => {
-  await sequelize.sync({ force: false });
+  await sequelize.sync({ force: process.env.RECREATE_DB === 'true' });
   /* await PlayerSequelize.bulkCreate([
     { username: 'toni' },
     { username: 'prova' }
   ]); */
 })();
-
-/* (async () => {
-  await sequelize.sync();
-  const jane = await User.create({
-    username: 'janedoe',
-    birthday: new Date(1980, 6, 20)
-  });
-  console.log(jane.toJSON());
-})();
- */
 
 module.exports = Player;

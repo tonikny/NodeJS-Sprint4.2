@@ -10,22 +10,29 @@ module.exports = PlayerController = {
      if (req.body.username) {
       username = req.body.username
     }
-    const userData = await playerService.addPlayer(username);
-    res.send(userData); 
+    if (await playerService.addPlayer(username)) {
+    res.status(201).send('Jugador creat!'); 
+    } else {
+      res.status(409).send('Nom repetit!');
+    }
   },
 
   getPlayer: async (req, res) => {
     if (req.params.id) {
       const userData = await playerService.getPlayer(req.params.id);
-      res.send(userData);
+      res.status(200).send(userData);
+    } else {
+      res.status(400).send('');
     }
   },
 
   getAllPlayers: async (req, res) => {
-    //const playerService = new PlayerService();
     const userData = await playerService.getAllPlayers();
-    //console.log(userData);
-    res.send(userData);
+    res.status(200).send(userData);
+  },
+
+  deletePlayer: async (req, res) => {
+
   }
 
 }
