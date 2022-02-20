@@ -17,6 +17,18 @@ module.exports = PlayerController = {
     }
   },
 
+  editPlayer: async (req, res) => {
+    if (req.body.id && req.body.username) {
+      if (await playerService.editPlayer(req.body.id, req.body.username)) {
+        res.status(201).send('Jugador modificat!'); // Created 
+      } else {
+        res.status(409).send('Nom repetit!'); // Conflict
+      }
+    } else {
+      res.status(400).send('Bad Request');
+    }
+  },
+
   getPlayer: async (req, res) => {
     if (req.params.id) {
       const userData = await playerService.getPlayer(req.params.id);

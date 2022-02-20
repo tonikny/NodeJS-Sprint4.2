@@ -35,30 +35,12 @@ class Player {
     return await PlayerSequelize.count({ where });
   }
 
-  async jugar () {
-    
+  async edit(id, username) {
+    this.dbo = await PlayerSequelize.findByPk(id);
+    this.dbo.username = username;
+    await this.dbo.save();
   }
 
 }
-
-/* // Definicio de la taula
-const { DataTypes } = require('sequelize');
-const PlayerSequelize = sequelize.define('player', {
-  id: {
-    type: DataTypes.INTEGER,
-    autoIncrement: true,
-    primaryKey: true
-  },
-  username: {
-    type: DataTypes.STRING,
-    allowNull: false
-  }
-}, {
-  createdAt: true,
-  updatedAt: false,
-  tableName: 'player'
-});
-
-//PlayerSequelize.hasMany(GameSequelize); */
 
 module.exports = Player;

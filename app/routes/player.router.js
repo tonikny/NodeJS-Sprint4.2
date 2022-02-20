@@ -34,7 +34,7 @@ const auth = require('../middlewares/auth');
 // crea un jugador
 router.post('/players', express.json(), playerController.addPlayer);
 
-router.put('/players');
+router.put('/players', auth, express.json(), playerController.editPlayer);
 
 router.post('/players/:id/games', auth, express.json(), playerController.addGame);
 

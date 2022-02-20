@@ -23,6 +23,18 @@ class PlayerService {
     return true;
   }
 
+  async editPlayer(id, username) {
+    this.player = new models.Player();
+    const playerExist = await this.player.get(id);
+    const nameExist = await this.player.getNum({ username: username });
+    if (playerExist && !nameExist) {
+      await this.player.edit(id,username);
+      return true;
+    } else {
+      return false;
+    }
+  }
+
   async getPlayer(id) {
     this.player = new models.Player();
     return await this.player.get(id);
