@@ -67,6 +67,17 @@ class PlayerService {
     }
   }
 
+  async deleteGames(playerId) {
+    this.player = new models.Player();
+    if (await this.player.get(playerId)) {
+      const gameObj = new models.Game();
+      await gameObj.deleteGames(playerId);
+      return true;
+    } else {
+      return false;
+    }
+  }
+
   async getWinner() {
     const players = await this.getAllPlayers();
     if (players) {

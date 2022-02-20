@@ -31,15 +31,11 @@ module.exports = PlayerController = {
     res.status(200).send(playersData); // Ok
   },
 
-  deletePlayer: async (req, res) => {
-
-  },
-
   addGame: async (req, res) => {
     if (req.params.id) {
-      const playerData = await playerService.addGame(req.params.id);
-      if (playerData) {
-        res.status(200).send(playerData); // Ok
+      const gameAdded = await playerService.addGame(req.params.id);
+      if (gameAdded) {
+        res.status(200).send('Jugada creada'); // Ok
       } else {
         res.status(404).send('Not Found');
       }
@@ -50,8 +46,8 @@ module.exports = PlayerController = {
 
   getAllGames: async (req, res) => {
     if (req.params.id) {
-      const userData = await playerService.getPlayer(req.params.id);
-      if (userData) {
+      const playerData = await playerService.getPlayer(req.params.id);
+      if (playerData) {
         const games = await playerService.getAllGames(req.params.id);
         res.status(200).send(games); // Ok
       } else {
@@ -60,6 +56,19 @@ module.exports = PlayerController = {
     } else {
       res.status(400).send('Bad Request');
     }
+  },
+
+  deleteGames: async (req, res) => {
+    if (req.params.id) {
+      const playerData = await playerService.getPlayer(req.params.id);
+      if (playerData) {
+        await playerService.deleteGames(req.params.id);
+        res.status(200).send('Jugades esborrades'); // Ok
+      } else {
+        res.status(404).send('Not Found');
+      }
+    } else {
+      res.status(400).send('Bad Request');    }
   },
 
   getWinner: async (req, res) => {

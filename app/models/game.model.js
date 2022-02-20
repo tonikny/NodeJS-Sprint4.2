@@ -24,6 +24,15 @@ class Game {
     return gameList;
   }
 
+  async deleteGames(playerId) {
+    const opcions = {
+      where: {
+        playerId: playerId
+      }
+    };
+    await GameSequelize.destroy(opcions);
+  }
+
 }
 
 module.exports = Game;

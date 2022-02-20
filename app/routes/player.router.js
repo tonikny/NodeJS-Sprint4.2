@@ -20,7 +20,7 @@ Al joc de daus s’hi juga amb dos daus de sis cares:
       **POST /players: crea un jugador
         PUT /players: modifica el nom del jugador
       **POST /players/{id}/games: un jugador específic realitza una tirada
-        DELETE /players/{id}/games: elimina les tirades del jugador
+      **DELETE /players/{id}/games: elimina les tirades del jugador
       **GET /players: retorna el llistat de tots els jugadors del sistema amb el seu percentatge mig d’èxits
       **GET /players/{id}/games: retorna el llistat de jugades per un jugador.
         GET /players/ranking: retorna el percentatge mig d’èxits del conjunt de tots els jugadors
@@ -38,7 +38,7 @@ router.put('/players');
 
 router.post('/players/:id/games', auth, express.json(), playerController.addGame);
 
-router.delete('/players/:id/games');
+router.delete('/players/:id/games', auth, playerController.deleteGames);
 
 router.get('/players', playerController.getAllPlayers);
 
