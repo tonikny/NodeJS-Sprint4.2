@@ -18,7 +18,7 @@ Al joc de daus s’hi juga amb dos daus de sis cares:
     El software ha de respectar els principals patrons de disseny.
     Has de tenir en compte els següents detalls de construcció:
       **POST /players: crea un jugador
-        PUT /players: modifica el nom del jugador
+      **PUT /players: modifica el nom del jugador
       **POST /players/{id}/games: un jugador específic realitza una tirada
       **DELETE /players/{id}/games: elimina les tirades del jugador
       **GET /players: retorna el llistat de tots els jugadors del sistema amb el seu percentatge mig d’èxits
@@ -34,15 +34,15 @@ const auth = require('../middlewares/auth');
 // crea un jugador
 router.post('/players', express.json(), playerController.addPlayer);
 
-router.put('/players', auth, express.json(), playerController.editPlayer);
+router.put('/players', express.json(), auth, playerController.editPlayer);
 
-router.post('/players/:id/games', auth, express.json(), playerController.addGame);
+router.post('/players/:id/games', express.json(), auth, playerController.addGame);
 
-router.delete('/players/:id/games', auth, playerController.deleteGames);
+router.delete('/players/:id/games', express.json(), auth, playerController.deleteGames);
 
 router.get('/players', playerController.getAllPlayers);
 
-router.get('/players/:id/games', playerController.getAllGames);
+router.get('/players/:id/games', express.json(), auth, playerController.getAllGames);
 
 router.get('/players/ranking', playerController.ranking);
 
