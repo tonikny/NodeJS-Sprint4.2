@@ -19,35 +19,36 @@ Al joc de daus s’hi juga amb dos daus de sis cares:
     Has de tenir en compte els següents detalls de construcció:
       **POST /players: crea un jugador
         PUT /players: modifica el nom del jugador
-        POST /players/{id}/games: un jugador específic realitza una tirada
+      **POST /players/{id}/games: un jugador específic realitza una tirada
         DELETE /players/{id}/games: elimina les tirades del jugador
       **GET /players: retorna el llistat de tots els jugadors del sistema amb el seu percentatge mig d’èxits
-        GET /players/{id}/games: retorna el llistat de jugades per un jugador.
+      **GET /players/{id}/games: retorna el llistat de jugades per un jugador.
         GET /players/ranking: retorna el percentatge mig d’èxits del conjunt de tots els jugadors
-        GET /players/ranking/loser: retorna el jugador amb pitjor percentatge d’èxit
-        GET /players/ranking/winner: retorna el jugador amb millor percentatge d’èxit
+      **GET /players/ranking/loser: retorna el jugador amb pitjor percentatge d’èxit
+      **GET /players/ranking/winner: retorna el jugador amb millor percentatge d’èxit
  */
 
-const PlayerController = require('../controllers/player.controller');
+const playerController = require('../controllers/player.controller');
+const auth = require('../middlewares/auth');
 
 // crea un jugador
-router.post('/players', express.json(), PlayerController.addPlayer);
+router.post('/players', express.json(), playerController.addPlayer);
 
 router.put('/players');
 
-router.post('/players/:id/games');
+router.post('/players/:id/games', auth, express.json(), playerController.addGame);
 
 router.delete('/players/:id/games');
 
-router.get('/players', PlayerController.getAllPlayers);
+router.get('/players', playerController.getAllPlayers);
 
-router.get('/players/:id/games');
+router.get('/players/:id/games', playerController.getAllGames);
 
 router.get('/players/ranking');
 
-router.get('/players/ranking/loser');
+router.get('/players/ranking/loser', playerController.getLoser);
 
-router.get('/players/ranking/winner');
+router.get('/players/ranking/winner', playerController.getWinner);
 
 
 

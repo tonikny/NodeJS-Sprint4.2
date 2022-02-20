@@ -1,9 +1,4 @@
-
-const { Sequelize, Model, DataTypes } = require('sequelize');
-const sequelize = new Sequelize(
-  process.env.MYSQL_CONN,
-  // { logging: false }
-);
+const { PlayerSequelize } = require('../databases/sequelize');
 
 class Player {
 
@@ -17,10 +12,12 @@ class Player {
   }
 
   async get(id) {
-    const player = await this.dbo.findByPk(id);
+    const player = await PlayerSequelize.findByPk(id);
     if (player !== null) {
       //console.log(player.toJSON());
       return player.toJSON();
+    } else {
+      return false;
     }
   }
 
@@ -38,9 +35,15 @@ class Player {
     return await PlayerSequelize.count({ where });
   }
 
+  async jugar () {
+    
+  }
+
 }
 
-const PlayerSequelize = sequelize.define('Player', {
+/* // Definicio de la taula
+const { DataTypes } = require('sequelize');
+const PlayerSequelize = sequelize.define('player', {
   id: {
     type: DataTypes.INTEGER,
     autoIncrement: true,
@@ -56,12 +59,6 @@ const PlayerSequelize = sequelize.define('Player', {
   tableName: 'player'
 });
 
-(async () => {
-  await sequelize.sync({ force: process.env.RECREATE_DB === 'true' });
-  /* await PlayerSequelize.bulkCreate([
-    { username: 'toni' },
-    { username: 'prova' }
-  ]); */
-})();
+//PlayerSequelize.hasMany(GameSequelize); */
 
 module.exports = Player;
