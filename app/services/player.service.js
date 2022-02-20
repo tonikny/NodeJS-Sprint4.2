@@ -112,10 +112,27 @@ class PlayerService {
     }
   }
 
+  async ranking() {
+    const allPlayers = await this.getAllPlayers();
+    let len = allPlayers.length
+    let sum = 0;
+    allPlayers.forEach((player) => {
+      if (!isNaN(player.percentatgeExit)) {
+        sum += player.percentatgeExit;
+      } else {
+        len--;
+      }
+    });
+    if (len > 0) {
+      return sum / len;
+    } else {
+      return false;
+    }
+  }
+
   async _getPercent(playerId) {
     const gameObj = new models.Game();
     const games = await gameObj.getAll(playerId);
-    //console.log(games);
     let cont = 0;
     for (const game of games) {
       if (game.primerDau + game.segonDau == 7) {
@@ -125,7 +142,6 @@ class PlayerService {
     const percent = 100 * cont / games.length;
     return percent;
   }
-
 
 }
 

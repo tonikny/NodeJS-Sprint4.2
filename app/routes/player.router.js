@@ -23,7 +23,7 @@ Al joc de daus s’hi juga amb dos daus de sis cares:
       **DELETE /players/{id}/games: elimina les tirades del jugador
       **GET /players: retorna el llistat de tots els jugadors del sistema amb el seu percentatge mig d’èxits
       **GET /players/{id}/games: retorna el llistat de jugades per un jugador.
-        GET /players/ranking: retorna el percentatge mig d’èxits del conjunt de tots els jugadors
+      **GET /players/ranking: retorna el percentatge mig d’èxits del conjunt de tots els jugadors
       **GET /players/ranking/loser: retorna el jugador amb pitjor percentatge d’èxit
       **GET /players/ranking/winner: retorna el jugador amb millor percentatge d’èxit
  */
@@ -44,7 +44,7 @@ router.get('/players', playerController.getAllPlayers);
 
 router.get('/players/:id/games', playerController.getAllGames);
 
-router.get('/players/ranking');
+router.get('/players/ranking', playerController.ranking);
 
 router.get('/players/ranking/loser', playerController.getLoser);
 

@@ -68,7 +68,8 @@ module.exports = PlayerController = {
         res.status(404).send('Not Found');
       }
     } else {
-      res.status(400).send('Bad Request');    }
+      res.status(400).send('Bad Request');
+    }
   },
 
   getWinner: async (req, res) => {
@@ -84,6 +85,15 @@ module.exports = PlayerController = {
     const playerData = await playerService.getLoser();
     if (playerData) {
       res.status(200).send(playerData); // Ok
+    } else {
+      res.status(404).send('Not Found');
+    }
+  },
+
+  ranking: async (req, res) => {
+    const ranking = await playerService.ranking();
+    if (ranking) {
+      res.status(200).send(ranking.toString()); // Ok
     } else {
       res.status(404).send('Not Found');
     }
