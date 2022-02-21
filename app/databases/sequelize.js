@@ -51,11 +51,24 @@ GameSequelize.belongsTo(PlayerSequelize);
 
 
 (async () => {
-  await sequelize.sync({ force: process.env.RECREATE_DB === 'true' });
-  /* await PlayerSequelize.bulkCreate([
-    { username: 'toni' },
-    { username: 'prova' }
-  ]); */
+  const recreateDb = process.env.RECREATE_DB === 'true'
+  await sequelize.sync({ force: recreateDb });
+  if (recreateDb) {
+    await PlayerSequelize.bulkCreate([
+      { id: 1, username: 'toni' },
+      { id: 2, username: 'pep' }
+    ]);
+    await GameSequelize.bulkCreate([
+      { primerDau: 4, segonDau: 5, playerId: 1 },
+      { primerDau: 5, segonDau: 6, playerId: 1 },
+      { primerDau: 4, segonDau: 3, playerId: 1 },
+      { primerDau: 2, segonDau: 5, playerId: 1 },
+      { primerDau: 1, segonDau: 5, playerId: 2 },
+      { primerDau: 6, segonDau: 1, playerId: 2 },
+      { primerDau: 3, segonDau: 5, playerId: 2 },
+      { primerDau: 4, segonDau: 6, playerId: 2 },
+    ]);
+  }
 })();
 
 module.exports = { PlayerSequelize, GameSequelize };

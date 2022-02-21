@@ -12,7 +12,7 @@ const auth = (req, res, next) => {
     if (id) {
       const auth = new Buffer.from(authHeader.split(' ')[1], 'base64').toString().split(':');
       if (auth[1] == id) {
-        console.log('Atentificació correcta');
+        console.log('Autentificació correcta');
         next();
         return;
       }

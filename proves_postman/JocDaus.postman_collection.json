@@ -226,7 +226,7 @@
 			"response": []
 		},
 		{
-			"name": "localhost:3000/players/ranking/loser",
+			"name": "localhost:3000/players/ranking/winner",
 			"request": {
 				"method": "GET",
 				"header": [],
