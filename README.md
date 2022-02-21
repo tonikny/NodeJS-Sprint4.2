@@ -27,7 +27,7 @@
 - **proves_postman/** - proves de les rutes 
 
 ## Proves
-Les proves de rutes amb autentificació fan servir l'id com a contrasenya i s'envia dins del body de la petició.
+Les proves de rutes amb autentificació fan servir l'id com a contrasenya i s'envia com a paràmetre o dins del body de la petició.
 
 ## Mòduls NPM necessaris
 

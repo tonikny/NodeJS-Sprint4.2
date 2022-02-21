@@ -1,13 +1,21 @@
 
 const auth = (req, res, next) => {
   const authHeader = req.headers.authorization;
-  const id = req.body.id;
-  if (authHeader && id) {
-    const auth = new Buffer.from(authHeader.split(' ')[1], 'base64').toString().split(':');
-    if (auth[1] == id) {
-      console.log('Atentificació correcta');
-      next();
-      return;
+  let id = undefined;
+  if (req.headers.authorization) {
+    if (req.params && req.params.id) {
+      id = req.params.id;
+    } else if (req.body && req.body.id) {
+      id = req.body.id;
+    }
+    const authHeader = req.headers.authorization;
+    if (id) {
+      const auth = new Buffer.from(authHeader.split(' ')[1], 'base64').toString().split(':');
+      if (auth[1] == id) {
+        console.log('Atentificació correcta');
+        next();
+        return;
+      }
     }
   }
   res.setHeader('WWW-Authenticate', 'Basic');
