@@ -40,12 +40,12 @@
 					"basic": [
 						{
 							"key": "password",
-							"value": "pep",
+							"value": "1",
 							"type": "string"
 						},
 						{
 							"key": "username",
-							"value": "pep",
+							"value": "Toni",
 							"type": "string"
 						}
 					]
@@ -54,7 +54,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\"id\": 1, \"username\": \"Toni\"}",
+					"raw": "{\"id\": 1, \"username\": \"TTToni\"}",
 					"options": {
 						"raw": {
 							"language": "json"
