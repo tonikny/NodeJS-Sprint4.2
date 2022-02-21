@@ -1,6 +1,16 @@
+let Player;
+let Game;
+let models;
 
-const Player = require('./player.model');
-const Game = require('./game.model');
+switch (process.env.DB_TYPE) {
+  case "MONGO":
+    Player = require('./mongo/player.model');
+    break;
+  
+  default: //case "SQL"
+    Player = require('./sql/player.model');
+    //Game = require('./sql/game.model');
+}
+models = { Player };
 
-const models = { Player, Game };
 module.exports = models;

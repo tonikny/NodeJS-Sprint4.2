@@ -1,7 +1,7 @@
 const { Sequelize, DataTypes } = require('sequelize');
 
 const sequelize = new Sequelize(
-  process.env.DB_CONN_URL,
+  process.env.DB_CONN_SQL_URL,
   { logging: process.env.DEBUG_DB === 'true' }
 );
 
