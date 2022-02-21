@@ -87,7 +87,7 @@
 						},
 						{
 							"key": "username",
-							"value": "Toni",
+							"value": "pep",
 							"type": "string"
 						}
 					]
@@ -126,12 +126,12 @@
 					"basic": [
 						{
 							"key": "password",
-							"value": "pep",
+							"value": "1",
 							"type": "string"
 						},
 						{
 							"key": "username",
-							"value": "pep",
+							"value": "toni",
 							"type": "string"
 						}
 					]
