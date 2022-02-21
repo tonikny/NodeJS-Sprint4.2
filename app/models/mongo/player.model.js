@@ -10,12 +10,13 @@ class Player {
     try {
       const players = await PlayerMongoose.find()
       const id = (players.length === 0) ? 1 : Math.max.apply(Math, players.map(function (o) { return o.id; })) + 1;
-      const player = {
+
+      const player = new PlayerMongoose({
         _id: id,
-        nom: username,
+        username: username,
         games: []
-      }
-      await PlayerMongoose.insertOne(player)
+      });
+      await player.save();
     } catch (e) {
       console.log(e)
     }

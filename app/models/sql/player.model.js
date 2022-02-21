@@ -44,23 +44,23 @@ class Player {
   }
 
   async addGame(playerId, primerDau, segonDau) {
-    const game = new models.Game();
+    const game = new Game();
     await game.add(playerId, primerDau, segonDau);
   }
 
   async getAllGames(playerId) {
-    const game = new models.Game();
+    const game = new Game();
     return await game.getAll(playerId, primerDau, segonDau);
   }
 
   async deleteGames(playerId) {
-    const game = new models.Game();
+    const game = new Game();
     await gameObj.deleteGames(playerId);
   }
 
   async getAllGames(playerId) {
-    const game = new models.Game();
-    return await getAll(playerId);
+    const game = new Game();
+    return await game.getAll(playerId);
   }
 
 }
