@@ -1,5 +1,5 @@
 
-# REST API
+# REST API - JOC DE DAUS
 
 ## Instal·lació
 - Clonació del projecte:
