@@ -1,12 +1,12 @@
 
-# REST API
+# REST API - JOC DE DAUS
 
 ## Instal·lació
 - Clonació del projecte:
   - `git clone https://github.com/tonikny/NodeJS-Sprint4.2.git`
 - Instal·lació de llibreries:
   - `npm install`
-- Copiar .env_DIST a .env i personalitzar-lo
+- Copiar `.env_DIST` a `.env` i configurar connexions a bases de dades i opcions.
 
 ## Ús
 - `npm start`
@@ -21,8 +21,8 @@
     - **models/** - models de classes (depenent del gestor de BD)
     - **routes/** - gestió de les rutes
     - **services/** - lògica de l'aplicació (indepenent del gestor de BD)
-- **app.js** - Pun d'entrada a l'aplicació
-- **.env_DIST** - template del .env
+- **app.js** - Punt d'entrada a l'aplicació
+- **.env_DIST** - template de .env
 - **package.json**
 - **proves_postman/** - proves de les rutes 
 
@@ -34,4 +34,5 @@ Les proves de rutes amb autentificació fan servir l'id com a contrasenya i s'en
 - Express
 - Dotenv
 - Sequelize
-- Mysql2 / Mariadb
+- Mysql2
+- Mongoose

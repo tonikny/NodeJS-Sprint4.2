@@ -1,4 +1,4 @@
-const { GameSequelize } = require('../databases/sequelize');
+const { GameSequelize } = require('../../databases/sequelize');
 
 class Game {
 

@@ -44,7 +44,7 @@ class PlayerService {
     this.player = new models.Player();
     const players = await this.player.getAll();
     for (const player of players) {
-      player.percentatgeExit = await this._getPercent(player.id);
+    player.percentatgeExit = await this._getPercent(player.id);
     }
     return players;
   }
@@ -54,9 +54,8 @@ class PlayerService {
     if (await this.player.get(playerId)) {
       const primerDau = helper.tiraDau();
       const segonDau = helper.tiraDau();
-      this.game = new models.Game();
       try {
-        await this.game.add(playerId, primerDau, segonDau);
+        await this.player.addGame(playerId, primerDau, segonDau);
         return true;
       } catch (e) {
         console.error(e.code, e.message);
@@ -71,8 +70,7 @@ class PlayerService {
   async getAllGames(playerId) {
     this.player = new models.Player();
     if (await this.player.get(playerId)) {
-      const gameObj = new models.Game();
-      const games = await gameObj.getAll(playerId);
+      const games = await this.player.getAllGames(playerId);
       return games;
     } else {
       return false;
@@ -82,8 +80,7 @@ class PlayerService {
   async deleteGames(playerId) {
     this.player = new models.Player();
     if (await this.player.get(playerId)) {
-      const gameObj = new models.Game();
-      await gameObj.deleteGames(playerId);
+      await this.player.deleteGames(playerId);
       return true;
     } else {
       return false;
@@ -143,8 +140,8 @@ class PlayerService {
   }
 
   async _getPercent(playerId) {
-    const gameObj = new models.Game();
-    const games = await gameObj.getAll(playerId);
+    this.player = new models.Player();
+    const games = await this.player.getAllGames(playerId);
     let cont = 0;
     for (const game of games) {
       if (game.primerDau + game.segonDau == 7) {

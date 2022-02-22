@@ -1,4 +1,6 @@
-const { PlayerSequelize } = require('../databases/sequelize');
+const { PlayerSequelize } = require('../../databases/sequelize');
+const Game = require('./game.model');
+
 
 class Player {
 
@@ -39,6 +41,26 @@ class Player {
     this.dbo = await PlayerSequelize.findByPk(id);
     this.dbo.username = username;
     await this.dbo.save();
+  }
+
+  async addGame(playerId, primerDau, segonDau) {
+    const game = new Game();
+    await game.add(playerId, primerDau, segonDau);
+  }
+
+  async getAllGames(playerId) {
+    const game = new Game();
+    return await game.getAll(playerId, primerDau, segonDau);
+  }
+
+  async deleteGames(playerId) {
+    const game = new Game();
+    await gameObj.deleteGames(playerId);
+  }
+
+  async getAllGames(playerId) {
+    const game = new Game();
+    return await game.getAll(playerId);
   }
 
 }
