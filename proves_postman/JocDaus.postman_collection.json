@@ -1,13 +1,50 @@
 {
 	"info": {
-		"_postman_id": "297cc2a0-2167-4931-bcc7-7e81af4ecdfb",
+		"_postman_id": "1dd95f0a-9230-42ef-93cc-5e1ab501756f",
 		"name": "JocDaus",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
+			"name": "localhost:3000/login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\": \"admin\",\n    \"password\": \"xxx\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/login",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "localhost:3000/players",
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwiaWF0IjoxNjQ3MDI2NTQ0LCJleHAiOjE2NDcwMzAxNDR9.0ZFheWP7juaM3lM8aHGnBToKNs66gaIMRUuGfNYLMNw",
+							"type": "string"
+						}
+					]
+				},
 				"method": "POST",
 				"header": [],
 				"body": {
@@ -36,16 +73,11 @@
 			"name": "localhost:3000/players/",
 			"request": {
 				"auth": {
-					"type": "basic",
-					"basic": [
+					"type": "bearer",
+					"bearer": [
 						{
-							"key": "password",
-							"value": "1",
-							"type": "string"
-						},
-						{
-							"key": "username",
-							"value": "Toni",
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwiaWF0IjoxNjQ3MDI2NTQ0LCJleHAiOjE2NDcwMzAxNDR9.0ZFheWP7juaM3lM8aHGnBToKNs66gaIMRUuGfNYLMNw",
 							"type": "string"
 						}
 					]
@@ -78,16 +110,11 @@
 			"name": "localhost:3000/players/2/games",
 			"request": {
 				"auth": {
-					"type": "basic",
-					"basic": [
+					"type": "bearer",
+					"bearer": [
 						{
-							"key": "password",
-							"value": "2",
-							"type": "string"
-						},
-						{
-							"key": "username",
-							"value": "pep",
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwiaWF0IjoxNjQ3MDI2NTQ0LCJleHAiOjE2NDcwMzAxNDR9.0ZFheWP7juaM3lM8aHGnBToKNs66gaIMRUuGfNYLMNw",
 							"type": "string"
 						}
 					]
@@ -122,16 +149,11 @@
 			"name": "localhost:3000/players/1/games",
 			"request": {
 				"auth": {
-					"type": "basic",
-					"basic": [
+					"type": "bearer",
+					"bearer": [
 						{
-							"key": "password",
-							"value": "1",
-							"type": "string"
-						},
-						{
-							"key": "username",
-							"value": "toni",
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwiaWF0IjoxNjQ3MDI2NTQ0LCJleHAiOjE2NDcwMzAxNDR9.0ZFheWP7juaM3lM8aHGnBToKNs66gaIMRUuGfNYLMNw",
 							"type": "string"
 						}
 					]
@@ -156,6 +178,16 @@
 		{
 			"name": "localhost:3000/players",
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwiaWF0IjoxNjQ3MDI2NTQ0LCJleHAiOjE2NDcwMzAxNDR9.0ZFheWP7juaM3lM8aHGnBToKNs66gaIMRUuGfNYLMNw",
+							"type": "string"
+						}
+					]
+				},
 				"method": "GET",
 				"header": [],
 				"url": {
@@ -175,16 +207,11 @@
 			"name": "localhost:3000/players/1/games",
 			"request": {
 				"auth": {
-					"type": "basic",
-					"basic": [
+					"type": "bearer",
+					"bearer": [
 						{
-							"key": "password",
-							"value": "1",
-							"type": "string"
-						},
-						{
-							"key": "username",
-							"value": "Toni",
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwiaWF0IjoxNjQ3MDI2NTQ0LCJleHAiOjE2NDcwMzAxNDR9.0ZFheWP7juaM3lM8aHGnBToKNs66gaIMRUuGfNYLMNw",
 							"type": "string"
 						}
 					]
@@ -209,6 +236,16 @@
 		{
 			"name": "localhost:3000/players/ranking",
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwiaWF0IjoxNjQ3MDI2NTQ0LCJleHAiOjE2NDcwMzAxNDR9.0ZFheWP7juaM3lM8aHGnBToKNs66gaIMRUuGfNYLMNw",
+							"type": "string"
+						}
+					]
+				},
 				"method": "GET",
 				"header": [],
 				"url": {
@@ -228,6 +265,16 @@
 		{
 			"name": "localhost:3000/players/ranking/winner",
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwiaWF0IjoxNjQ3MDI2NTQ0LCJleHAiOjE2NDcwMzAxNDR9.0ZFheWP7juaM3lM8aHGnBToKNs66gaIMRUuGfNYLMNw",
+							"type": "string"
+						}
+					]
+				},
 				"method": "GET",
 				"header": [],
 				"url": {
@@ -248,6 +295,16 @@
 		{
 			"name": "localhost:3000/players/ranking/loser",
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwiaWF0IjoxNjQ3MDI2NTQ0LCJleHAiOjE2NDcwMzAxNDR9.0ZFheWP7juaM3lM8aHGnBToKNs66gaIMRUuGfNYLMNw",
+							"type": "string"
+						}
+					]
+				},
 				"method": "GET",
 				"header": [],
 				"url": {

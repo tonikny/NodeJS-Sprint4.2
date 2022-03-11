@@ -1,8 +1,18 @@
+const mysql = require('mysql2/promise');
 const { Sequelize, DataTypes } = require('sequelize');
 
+const debug = (process.env.DEBUG_DB === 'true') ? console.log : false;
+
 const sequelize = new Sequelize(
-  process.env.DB_CONN_SQL_URL,
-  { logging: process.env.DEBUG_DB === 'true' }
+  process.env.MYSQL_DB_NAME,
+  process.env.MYSQL_DB_USER,
+  process.env.MYSQL_DB_PASS,
+  {
+    host: process.env.MYSQL_DB_HOST,
+    port: process.env.MYSQL_DB_PORT,
+    dialect: 'mysql',
+    logging: debug
+  }
 );
 
 /* 
