@@ -6,7 +6,10 @@
   - `git clone https://github.com/tonikny/NodeJS-Sprint4.2.git`
 - Instal·lació de llibreries:
   - `npm install`
-- Copiar `.env_DIST` a `.env` i configurar connexions a bases de dades i opcions.
+
+## Configuració
+- Copiar `.env_DIST` a `.env` i configurar connexions a bases de dades i opcions, així com usuari i contrasenya.
+- La opció de recrear la base de dades destrueix el seu contingut i insereix alguns registres de prova.
 
 ## Ús
 - `npm start`
@@ -27,7 +30,7 @@
 - **proves_postman/** - proves de les rutes 
 
 ## Proves
-Les proves de rutes amb autentificació fan servir l'id com a contrasenya i s'envia com a paràmetre o dins del body de la petició.
+Les proves de rutes fan servir autenticació JWT que es genera fent login amb l'usuari i contrasenya definits a .env.
 
 ## Mòduls NPM necessaris
 
