@@ -41,7 +41,7 @@ const PlayerMongoose = mongoose.model('player', playerSchema);
     await PlayerMongoose.deleteMany({});
     await PlayerMongoose.insertMany([
       {
-        _id: 1, username: 'toni', games: [
+        _id: 1, username: 'prova_1', games: [
           { primerDau: 4, segonDau: 5 },
           { primerDau: 5, segonDau: 6 },
           { primerDau: 4, segonDau: 3 },
@@ -49,7 +49,7 @@ const PlayerMongoose = mongoose.model('player', playerSchema);
         ]
       },
       {
-        _id: 2, username: 'pep', games: [
+        _id: 2, username: 'prova_2', games: [
           { primerDau: 1, segonDau: 5 },
           { primerDau: 6, segonDau: 1 },
           { primerDau: 3, segonDau: 5 },

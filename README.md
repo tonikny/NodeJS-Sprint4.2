@@ -9,7 +9,7 @@
 
 ## Configuració
 - Copiar `.env_DIST` a `.env` i configurar connexions a bases de dades i opcions, així com usuari i contrasenya.
-- La opció de recrear la base de dades destrueix el seu contingut i insereix alguns registres de prova.
+- La opció de recrear la base de dades la destrueix (si existeix) i es crea de nou inserint alguns registres de prova.
 
 ## Ús
 - `npm start`

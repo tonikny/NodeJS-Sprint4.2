@@ -65,8 +65,8 @@ GameSequelize.belongsTo(PlayerSequelize);
   await sequelize.sync({ force: recreateDb });
   if (recreateDb) {
     await PlayerSequelize.bulkCreate([
-      { id: 1, username: 'toni' },
-      { id: 2, username: 'pep' }
+      { id: 1, username: 'prova_1' },
+      { id: 2, username: 'prova_2' }
     ]);
     await GameSequelize.bulkCreate([
       { primerDau: 4, segonDau: 5, playerId: 1 },
