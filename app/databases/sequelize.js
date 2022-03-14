@@ -1,8 +1,18 @@
+const mysql = require('mysql2/promise');
 const { Sequelize, DataTypes } = require('sequelize');
 
+const debug = (process.env.DEBUG_DB === 'true') ? console.log : false;
+
 const sequelize = new Sequelize(
-  process.env.DB_CONN_SQL_URL,
-  { logging: process.env.DEBUG_DB === 'true' }
+  process.env.MYSQL_DB_NAME,
+  process.env.MYSQL_DB_USER,
+  process.env.MYSQL_DB_PASS,
+  {
+    host: process.env.MYSQL_DB_HOST,
+    port: process.env.MYSQL_DB_PORT,
+    dialect: 'mysql',
+    logging: debug
+  }
 );
 
 /* 
@@ -55,8 +65,8 @@ GameSequelize.belongsTo(PlayerSequelize);
   await sequelize.sync({ force: recreateDb });
   if (recreateDb) {
     await PlayerSequelize.bulkCreate([
-      { id: 1, username: 'toni' },
-      { id: 2, username: 'pep' }
+      { id: 1, username: 'prova_1' },
+      { id: 2, username: 'prova_2' }
     ]);
     await GameSequelize.bulkCreate([
       { primerDau: 4, segonDau: 5, playerId: 1 },

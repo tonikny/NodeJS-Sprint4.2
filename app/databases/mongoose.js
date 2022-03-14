@@ -1,10 +1,20 @@
 const mongoose = require('mongoose');
 
-mongoose.set('debug', process.env.DEBUG_DB === 'true')
-mongoose.connect(process.env.DB_CONN_MONGO_URL + '?serverSelectionTimeoutMS=5000')
+mongoose.set('debug', process.env.DEBUG_DB === 'true');
+
+const host = process.env.MONGO_DB_HOST || 'localhost';
+const port = process.env.MONGO_DB_PORT || '27017';
+const dbName = process.env.MONGO_DB_NAME || 'rest_4_2';
+
+mongoose.connect('mongodb://' + host + ':' + port + '/' + dbName,
+  {
+    user: process.env.MONGO_DB_USER,
+    pass: process.env.MONGO_DB_PASS,
+    serverSelectionTimeoutMS: 5000
+  })
   //.then(() => console.log('connected to mongodb'))
   .catch((e) => {
-    console.log("Conexió a MongoDB ha trigat massa")
+    console.log("Connexió a MongoDB ha trigat massa")
     console.log(e);
     process.exit()
   });
@@ -31,7 +41,7 @@ const PlayerMongoose = mongoose.model('player', playerSchema);
     await PlayerMongoose.deleteMany({});
     await PlayerMongoose.insertMany([
       {
-        _id: 1, username: 'toni', games: [
+        _id: 1, username: 'prova_1', games: [
           { primerDau: 4, segonDau: 5 },
           { primerDau: 5, segonDau: 6 },
           { primerDau: 4, segonDau: 3 },
@@ -39,7 +49,7 @@ const PlayerMongoose = mongoose.model('player', playerSchema);
         ]
       },
       {
-        _id: 2, username: 'pep', games: [
+        _id: 2, username: 'prova_2', games: [
           { primerDau: 1, segonDau: 5 },
           { primerDau: 6, segonDau: 1 },
           { primerDau: 3, segonDau: 5 },
