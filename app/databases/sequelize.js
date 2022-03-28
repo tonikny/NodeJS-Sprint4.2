@@ -61,7 +61,22 @@ GameSequelize.belongsTo(PlayerSequelize);
 
 
 (async () => {
-  const recreateDb = process.env.RECREATE_DB === 'true'
+  const recreateDb = process.env.RECREATE_DB === 'true';
+  if (recreateDb) {
+    // creacio de base de dades
+    try {
+      const conn = await mysql.createConnection({
+        host: process.env.MYSQL_DB_HOST,
+        port: process.env.MYSQL_DB_PORT,
+        user: process.env.MYSQL_DB_USER,
+        password: process.env.MYSQL_DB_PASS });
+      await conn.query(`DROP DATABASE IF EXISTS \`${process.env.MYSQL_DB_NAME}\`;`);
+      await conn.query(`CREATE DATABASE IF NOT EXISTS \`${process.env.MYSQL_DB_NAME}\`;`);
+    } catch (e) {
+      console.error('No es pot crear a la bd', e);
+      process.exit();
+    }
+  }
   await sequelize.sync({ force: recreateDb });
   if (recreateDb) {
     await PlayerSequelize.bulkCreate([
