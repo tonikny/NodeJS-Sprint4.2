@@ -1,50 +1,41 @@
 
-# Node Initial Project
+# REST API - JOC DE DAUS
 
-### Project Structure
+- ## Instal·lació
+  - Clonació del projecte:
+    - `git clone https://github.com/tonikny/NodeJS-Sprint4.2.git`
+  - Instal·lació de llibreries:
+    - `npm install`
 
-Main structure of node.js project. Folders / files:
+- ## Configuració
+  - Copiar `.env_DIST` a `.env` i configurar connexions a bases de dades i opcions, així com usuari i contrasenya.
+  - La opció de recrear la base de dades la destrueix (si existeix) i es crea de nou inserint alguns registres de prova.
 
-- <b>\_\_tests__</b>. Tests folder. See [Jest Docs](https://jestjs.io/es-ES/docs/configuration) and [Chai Docs](https://www.chaijs.com/)
-- <b>app</b>:
-    - <b>config</b>
-    - <b>controllers</b>
-    - <b>crons</b>
-    - <b>middleware</b>
-    - <b>models</b>
-    - <b>routes</b>
-    - <b>tmp</b>
-    - <b>app.js</b>. Entry point.
-- <b>.env</b>. Environment descriptor. See [dotenv doc](https://www.npmjs.com/package/dotenv).
-- <b>.eslintrc</b>. Linter JS, static code analyzer. See [EsLint Docs](https://eslint.org/docs/user-guide/configuring/configuration-files).
-- <b>.prettierignore</b>. Code formatter. See [Prettier Config](https://prettier.io/docs/en/configuration.html) and [Prettier Ignore](https://prettier.io/docs/en/ignore.html).
-- <b>.ecosystem.config.js</b>. Process Manage at runtime. See [PM2 Docs](https://pm2.keymetrics.io/).
-- <b>package.json</b>.
+- ## Ús
+  - `npm start`
 
-### Import project for use with WebStorm
+- ## Estructura del projecte
 
-Follow the steps below:
-* Clone the project from the Github Platform. Execute:
-  ```
-  git clone [url project]
-  ```
-* Open the project downloaded.
-![Open Project](img/webstorm_open.png)
+  - **app**:
+      - **databases/** - esquemes de les taules
+      - **controllers/** - gestió d'e/s 
+      - **helpers/**
+      - **middlewares/**
+      - **models/** - models de classes (depenent del gestor de BD)
+      - **routes/** - gestió de les rutes
+      - **services/** - lògica de l'aplicació (indepenent del gestor de BD)
+  - **app.js** - Punt d'entrada a l'aplicació
+  - **.env_DIST** - template de .env
+  - **package.json**
+  - **proves_postman/** - proves de les rutes 
 
+- ## Proves
+  Les proves de rutes fan servir autenticació JWT que es genera fent login amb l'usuari i contrasenya definits a .env.
 
-### Import project for use with Visual Studio Code
+- ## Mòduls NPM necessaris
 
-Follow the steps below:
-* Clone the project from the Github Platform. Execute:
-  ```
-  git clone [url project]
-  ```
-* Open the project downloaded.
-  ![Open Project](img/VSC_open.png)
-
-
-### Utilities
-
-* [Node Developers Guide](https://nodejs.dev/learn)
-* **.gitignore file** configuration. See [Official Docs](https://docs.github.com/en/get-started/getting-started-with-git/ignoring-files).
-* **Git branches**. See [Official Docs](https://git-scm.com/book/en/v2/Git-Branching-Branches-in-a-Nutshell)
+  - Express
+  - Dotenv
+  - Sequelize
+  - Mysql2
+  - Mongoose
